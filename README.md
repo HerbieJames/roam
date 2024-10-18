@@ -38,6 +38,10 @@ Features in this project have been prioretized using MoSCoW.
 ### Won't-Haves
 - **Multiplayer with Room Codes:** Similar to Kahoot!, Django could have been incorperated to facilitae room codes which could be used to create parties of adventurers. Players could have voted on outcomes to scenes, and exchange equiptment as the adventures continued. Incorperation of this feature would have meant a specific attention to how the player characters are interacted with by the rest of the code (i.e. taking damage, recieving items, experiencing stat changes), and would have demanded consideration from the very beginning of the project. At the time as a Junior Developer, this would not have been within the realm of feasibility, as learning the Django to incorperate the technology would not have suited the time frame.
 
+## Application States
+*Disclaimer:* The word 'state' also describes an object used within the application. For the sake of this explaination, the object 'state' will be refered to in quotations to avoid confusion.
+![state-diagram](Roam-State-Diagram.jpg)
+
 ## Deployment
 ### Going Live
 
