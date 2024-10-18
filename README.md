@@ -14,6 +14,8 @@
 
 ## Considerations
 ### Technology
+#### Design:
+- **Balsamiq:** Since Balsamiq has been made available through my placement in the Bootcamp with Code Institute, I considered it for both the Wireframe and State Diagram for this project. Due to it's versitiliy, simplicity to work with, and clean design making for easy to read documents, I chose it for these purposes.
 #### Data storage:
 - **JSON:** Given that the project would need to manage a great deal of static data, between all the possible scenes and threads that could be run, JSON was considered for storing this data. However, it's key drawback is that it is unable to store methods, which are vital to the functionality of both scenes, and threads.
 - **Objects in .js files:** Writing all the scenes into one array, each as their own object, has a great deal of practical disadvantages when it comes to writing a large number of scenes. It also would make the main.js code difficult to navigate. However, at this stage in my experience as a junior developer, javascript's ability to store methods in objects does make it a solution to the issue of how scenes and threads should be stored. To keep the main.js code easier to navigate, seperate files are written in and exported from for the initScenes, subScenes and threadIndex arrays.
