@@ -10,7 +10,7 @@
 - **As a, ... I can:** ... **...so that:**
 
 ### Wireframes
-![wireframe](Roam-Wireframe.jpg)
+![wireframe](assets/images/Roam-Wireframe.jpg)
 
 ## Considerations
 ### Technology
@@ -42,7 +42,7 @@ Features in this project have been prioretized using MoSCoW.
 
 ## Application States
 *Disclaimer:* The word 'state' also describes an object used within the application. For the sake of this explaination, the object 'state' will be refered to in quotations to avoid confusion.
-![state-diagram](Roam-State-Diagram.jpg)
+![state-diagram](assets/images/Roam-State-Diagram.jpg)
 
 ## Deployment
 ### Going Live
