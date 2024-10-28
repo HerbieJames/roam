@@ -35,12 +35,7 @@ footer {
     width: 100%;
 }
 
-.ribbon {
-    display: flex;
-    padding: 5px;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: var(--bg-colour);
+.vpad {
     height: 33px;
 }
 
@@ -93,7 +88,7 @@ footer {
     flex-grow: 1;
 }
 
-.sect-a {
+.menu {
     direction: rtl;
     overflow-y: hidden;
     min-height: 297px;
@@ -115,19 +110,23 @@ footer {
     background-color: var(--bg-colour);
 }
 
-.item-b {
+.item-a {
     top: 17.5%;
 }
 
-.item-c {
+.item-b {
     top: 35%;
+}
+
+.item-c {
+    top: 52.5%;
 }
 
 .item-d {
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none;
     justify-content: center;
-    height: 42.5%;
+    height: calc(40% - 40px);
     bottom: 0;
 }
 
@@ -175,11 +174,11 @@ footer {
 }
 
 @media screen and (max-width: 749px) {
-    .ribbon, footer {display: none;}
+    .vpad, footer {display: none;}
     .hpad {display: block;}
     .container {flex-flow: column;}
     .item {position: static; justify-content: center; height: auto; flex-grow: 1; margin: 0.375%; padding: 0%;}
-    .sect-a {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
+    .menu {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
     .sect-b {min-height: 198px; max-height: 300px; order: 1;}
     .sect-c {order:0; min-height: 88px; display: flex; flex-flow: row;}
     .item-a, .item-b, .item-c, .item-d {min-width: 80px;}
