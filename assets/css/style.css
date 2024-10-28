@@ -1,9 +1,9 @@
 :root {
-    --bg-colour: #5a5a5a;
-    --txt-color: #181818;
-    --accent-color: #E74C3C;
-    --secondary-color: #ffde74;
-    --primary-color: #ffcc24;
+    --bg-colour: #0C1019;
+    --txt-color: #E8E4E1;
+    --accent-color: #A5A9B4;
+    --secondary-color: #3D4F75;
+    --primary-color: #476891;
 }
 
 * {
@@ -23,7 +23,7 @@ html {
 body {
     margin: 0 calc((100% - 1027px)/3);
     min-height: 100%;
-    background-color: var(--bg-colour);
+    background-color: var(--accent-color);
     display: flex;
     flex-flow: column;
 }
@@ -52,9 +52,7 @@ footer {
     position: relative;
     flex-grow: 1;
     background-color: var(--secondary-color);
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--primary-color);
+    border-bottom: 2px solid var(--bg-colour);
     min-width: 198px;
     min-height: 33px;
 }
@@ -63,12 +61,12 @@ footer {
     position: absolute;
     display: flex;
     align-items: center;
-    background-color: var(--bg-colour);
+    background-color: var(--primary-color);
     border-style: solid;
     border-width: 2px;
-    border-color: var(--txt-color);
+    border-color: var(--secondary-color);
     border-radius: 2px;
-    box-shadow: 0px 0px 3px var(--txt-color);
+    box-shadow: 0px 0px 3px var(--bg-colour);
     height: 15%;
     width: 95%;
     margin: 5px;
@@ -98,13 +96,12 @@ footer {
 }
 
 .sect-c {
-    background-color: var(--accent-color);
     overflow-y: hidden;
     min-height: 297px;
 }
 
 .sect-d {
-    background-color: var(--accent-color);
+    background-color: var(--bg-colour);
 }
 
 .item-b {
@@ -145,6 +142,7 @@ footer {
 
 .stats {
     background-color: var(--secondary-color);
+    box-shadow: none;
     height: calc(57.5% - 15px);
     bottom: 0;
     flex-flow: column;
@@ -159,6 +157,9 @@ footer {
 
 @media screen and (max-width: 1027px) {
     body {margin:0;}
+    .container-b {flex-flow: column;}
+    .sect-d {order: 3;}
+    .sect-e {order: 2; max-height: 148px;}
 }
 
 @media screen and (max-width: 749px) {
@@ -169,8 +170,6 @@ footer {
     .sect-a {order:0; min-height: 44px; display: flex; flex-flow: row;}
     .sect-b {min-height: 198px; max-height: 300px; order: 1;}
     .sect-c {order:0; min-height: 88px; display: flex; flex-flow: row;}
-    .sect-d {order: 3; max-height: 148px;}
-    .sect-e {order: 2; max-height: 148px;}
     .item-a, .item-b, .item-c, .item-d {min-width: 80px;}
     .item-d {justify-content: flex-end;}  
     .item-e {margin: 0; height: calc(15% + 10px);}
