@@ -10,7 +10,9 @@
     margin: 0;
     padding: 0;
     color: var(--txt-color);
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
     overflow: hidden;
 }
 
@@ -41,6 +43,7 @@ footer {
 }
 
 .item {
+    position: relative;
     flex-grow: 1;
     background-color: var(--secondary-color);
     border-style: solid;
@@ -50,6 +53,16 @@ footer {
     min-height: 33px;
 }
 
+.button {
+    background-color: var(--bg-colour);
+    border-style: solid;
+    border-width: 10px;
+    border-color: var(--txt-color);
+    position: absolute;
+    width: 95%;
+    margin: 2.5%;
+}
+
 .container-page {
     flex-flow: column;
     background-color: var(--bg-colour);
@@ -57,6 +70,11 @@ footer {
 
 .container-b {
     flex-grow: 1;
+}
+
+.item-a {
+    display: flex;
+    flex-flow: column;
 }
 
 .item-b {
