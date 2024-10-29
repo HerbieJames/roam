@@ -1,3 +1,5 @@
+import scenes from "./scenes/scenes"
+
 const game = { 
     prog: 0, // game ends at 10
     area: "", // "forest", "city" or "dungeon"
@@ -12,6 +14,10 @@ const character = {// initialise 0 values in character generation (5pts)
     health: 5 // 0 -> 5
 }
 
+/** Writes message to console element
+ * 
+ * @param {*} string contents of message to console element.
+ */
 function addLog(txt) {
     let entryParent = document.getElementById("consoleEl");
     let newEntry = document.createElement("p");
