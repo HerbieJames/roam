@@ -4,7 +4,7 @@ export const scenes = [
     opt2Name: "Set up camp.",
     opt3Name: "",
     opt4Name: "",
-    preReq: {area: "forest"},
+    preReq: {preGame: {area: "forest"}, preChar: {}, preInv: {}},
     introScript(game, character, inventory) {
         game.time = "night";
         addLog("You come upon a clearing with an unlit campfire.");
@@ -34,7 +34,7 @@ export const scenes = [
     opt2Name: "Make a wish.",
     opt3Name: "",
     opt4Name: "",
-    preReq: {area: "city"},
+    preReq: {mainGame: {area: "city"}, mainChar: {}, mainInv: {}},
     introScript(game, character, inventory) {
         addLog("The streets open up about a fountain.");
         return {sceneGame: game, sceneChar: character, sceneInv: inventory};
