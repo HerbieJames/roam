@@ -1,19 +1,3 @@
-import { game, character, addLog} from "../main"
-/* 
-game = {
-    time: "night" or "day"
-    area: "forest" or "dungeon" or "city"
-    luck: 0 -> 5
-    prog: 0 -> 10
-    }
-character = {
-    strength: 0 -> 5
-    speed: 0 -> 5
-    cunning: 0 -> 5
-    health: 0 -> 5
-*/
-
-
 export const scenes = [
 {title: "Campfire", // purpose: toggles time
     opt1Name: "Move on.",
@@ -21,20 +5,29 @@ export const scenes = [
     opt3Name: "",
     opt4Name: "",
     preReq: {area: "forest"},
-    introScript() {
+    introScript(game, character, inventory) {
         game.time = "night";
         addLog("You come upon a clearing with an unlit campfire.");
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
     },
-    opt1Script() {
+    opt1Script(game, character, inventory) {
         addLog("You move on.");
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
     },
-    opt2Script() {
+    opt2Script(game, character, inventory) {
         game.time = game.time === "day" ? "night" : "day";
         if (character.health < 5) {character.health += 1;}
         addLog("You spend some time here to recover your health.");
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
     },
-    opt3Script() {/**/},
-    opt4Script() {/**/} } ,
+    opt3Script(game, character, inventory) {
+        /**/
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory}
+    },
+    opt4Script(game, character, inventory) {
+        /**/
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory}
+    } } ,
 
 {title: "Wishing well", // purpose: improves luck
     opt1Name: "Move on.",
@@ -42,19 +35,28 @@ export const scenes = [
     opt3Name: "",
     opt4Name: "",
     preReq: {area: "city"},
-    introScript() {
+    introScript(game, character, inventory) {
         addLog("The streets open up about a fountain.");
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
     },
-    opt1Script() {
+    opt1Script(game, character, inventory) {
         addLog("You move on.");
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
     },
-    opt2Script() {
+    opt2Script(game, character, inventory) {
         game.luck += game.luck >= 4 ? 0 : 1;
         if (character.health < 5) {character.health += 1;}
         addLog("You make a quiet prayer to yourself before moving on.");
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
     },
-    opt3Script() {/**/},
-    opt4Script() {/**/} } ,
+    opt3Script(game, character, inventory) {
+        /**/
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
+    },
+    opt4Script(game, character, inventory) {
+        /**/
+        return {sceneGame: game, sceneChar: character, sceneInv: inventory};
+    } } ,
 
     // place changes scenes (challenge character but increase progress after dungeons)
 
