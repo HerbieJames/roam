@@ -1,4 +1,4 @@
-import scenes from "./scenes/scenes";
+import scenes from "./scenes/roam-film.js";
 
 const mainGame = { 
     prog: 0, // game ends at 10

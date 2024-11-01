@@ -44,13 +44,13 @@ footer {
     width: 100%;
 }
 
-.accounts {
+.accounts-btn {
     background-color: var(--primary-color);
     height: 23px;
     width: 90px;
 }
 
-.container {
+.row {
     display: flex;
 }
 
@@ -79,50 +79,50 @@ footer {
     padding: 2.5% 3%;
 }
 
-.container-page {
+.row-page {
     flex-flow: column;
     background-color: var(--bg-colour);
 }
 
-.container-b {
+.row-b {
     flex-grow: 1;
 }
 
-.menu {
+.menu-view {
     direction: rtl;
     overflow-y: hidden;
     min-height: 297px;
 }
 
-.sect-b {
+.scene-view {
     aspect-ratio: 16/9;
     background-color: var(--primary-color);
     min-height: 198px;
     max-height: 450px;
 }
 
-.sect-c {
+.char-view {
     overflow-y: hidden;
     min-height: 297px;
 }
 
-.sect-d {
+.console-view {
     background-color: var(--bg-colour);
 }
 
-.item-a {
+.save-btn {
     top: 17.5%;
 }
 
-.item-b {
+.load-btn {
     top: 35%;
 }
 
-.item-c {
+.reset-btn {
     top: 52.5%;
 }
 
-.item-d {
+.roam-img {
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none;
     justify-content: center;
@@ -130,11 +130,12 @@ footer {
     bottom: 0;
 }
 
-.item-e {
+.title {
     /* Permalink - use to edit and share this gradient:
     https://colorzilla.com/gradient-editor/#1e5799+0,000000+0,7db9e8+100&1+19,0+100 */
     background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.75) 7%,rgba(0,0,0,0.05) 86%,rgba(0,0,0,0) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    z-index: 99;
     border-style: none;
     border-radius: 0%;
     box-shadow: none;
@@ -144,14 +145,14 @@ footer {
     width: 100%;
 }
 
-.char-art {
+.char-img {
     background-color: var(--txt-color);
     box-shadow: none;
     justify-content: center;
     height: 42.5%;
 }
 
-.stats {
+.stats-txt {
     background-color: var(--secondary-color);
     box-shadow: none;
     height: calc(57.5% - 15px);
@@ -159,7 +160,7 @@ footer {
     flex-flow: column;
 }
 
-.stats-sub {
+.head-stats, .info1-stats, .info2-stats {
     text-align: center;
     font-size: smaller;
     height: 100%;
@@ -168,23 +169,23 @@ footer {
 
 @media screen and (max-width: 1027px) {
     body {margin:0;}
-    .container-b {flex-flow: column;}
-    .sect-d {order: 3;}
-    .sect-e {order: 2; max-height: 148px;}
+    .row-b {flex-flow: column;}
+    .console-view {order: 3;}
+    .inv-view {order: 2; max-height: 148px;}
 }
 
 @media screen and (max-width: 749px) {
     .vpad, footer {display: none;}
     .hpad {display: block;}
-    .container {flex-flow: column;}
+    .row {flex-flow: column;}
     .item {position: static; justify-content: center; height: auto; flex-grow: 1; margin: 0.375%; padding: 0%;}
-    .menu {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
-    .sect-b {min-height: 198px; max-height: 300px; order: 1;}
-    .sect-c {order:0; min-height: 88px; display: flex; flex-flow: row;}
-    .item-a, .item-b, .item-c, .item-d {min-width: 80px;}
-    .item-d {justify-content: flex-end;}  
-    .item-e {margin: 0; height: calc(15% + 10px);}
-    .char-art {order: 1; max-width: 100px;}
-    .stats {flex-flow: row; direction: rtl; padding: 10px;}
-    .stats-sub {text-align: right; align-content: center;}
+    .menu-view {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
+    .scene-view {min-height: 198px; max-height: 300px; order: 1;}
+    .char-view {order:0; min-height: 88px; display: flex; flex-flow: row; font-size: smaller;}
+    .save-btn, .load-btn, .reset-btn, .roam-img {min-width: 80px;}
+    .roam-img {justify-content: flex-end;}  
+    .title {margin: 0; height: calc(15% + 10px);}
+    .char-img {order: 1; max-width: 100px;}
+    .stats-txt {flex-flow: row; direction: rtl; padding: 10px;}
+    .head-stats, .info1stats, .info2-stats {text-align: right; align-content: center;}
 }
