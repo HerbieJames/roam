@@ -1,10 +1,10 @@
-import scenes from "./scenes/roam-film.js";
+import { scenes } from "./scenes/roam-film.js";
 
 const mainGame = { 
     prog: 0, // game ends at 10
-    area: "", // "forest", "city" or "dungeon"
+    area: "forest", // "forest", "city" or "dungeon"
     luck: 0, // 0 -> 0.25
-    time: "" // "night" or "day"
+    time: "day" // "night" or "day"
 }
 
 const mainChar = {// initialise 0 values in character generation (5pts)
@@ -16,30 +16,22 @@ const mainChar = {// initialise 0 values in character generation (5pts)
 
 const mainInv = []
 
-const scene = {
-    title: "emptyScene",
-    opt1Name: "Move on.",
-    opt2Name: "",
-    opt3Name: "",
-    opt4Name: "",
-    preReq: {preGame: {}, preChar: {}, preInv: {}},
-    introScript(game, character, inventory) {return {sceneGame: game, sceneChar: character, sceneInv: inventory};},
-    opt1Script(game, character, inventory) {return {sceneGame: game, sceneChar: character, sceneInv: inventory};},
-    opt2Script(game, character, inventory) {return {sceneGame: game, sceneChar: character, sceneInv: inventory};},
-    opt3Script(game, character, inventory) {return {sceneGame: game, sceneChar: character, sceneInv: inventory};},
-    opt4Script(game, character, inventory) {return {sceneGame: game, sceneChar: character, sceneInv: inventory};}
-}
-
 /** Writes message to console element
  * 
  * @param {*} string contents of message to console element.
  */
 function addLog(txt) {
-    let entryParent = document.getElementById("consoleEl");
+    let entryParent = document.getElementById("consoleLogEl");
     let newEntry = document.createElement("p");
-    newEntry.className = "console-entry";
+    newEntry.className = "log-entry";
     newEntry.innerHTML = txt;
     entryParent.appendChild(newEntry);
+}
+
+function logObj(obj) {
+    for (const property in obj) {
+        addLog(property + ": " + obj[property])
+    }
 }
 
 /**
@@ -53,9 +45,11 @@ function selectScene(film) {
     //      attempt to validate preReq
     //      if fails, repeats attempt for new hold
     //      if passes, release 
-    var heldScene;
+    var heldScene = {};
+    var valid = false;
     while (valid === false) {
         heldScene = film[Math.floor(Math.random()*(scenes.length))];
+        console.log("heldScene pre-validation: " + heldScene.title)
         valid = true;
         for (const property in heldScene.preReq.preGame) {
             if (heldScene.preReq.preGame[property] != mainGame[property]) {valid = false};
@@ -66,22 +60,34 @@ function selectScene(film) {
         for (const property in heldScene.preReq.preInv) {
             if (heldScene.preReq.preInv[property] != mainInv[property]) {valid = false};
         } }
+
+        console.log("Selected Scene: " + heldScene.title)
     return heldScene;
 }
 
-while (mainGame.prog < 10) { // game loop
+console.log("logEl test start")
+addLog("--- ROAM ---")
+console.log("logEl test end")
+
+// while (mainGame.prog < 10) { game loop
     // select scene
-    scene = selectScene(scenes);
+    var scene = selectScene(scenes);
 
     // run scene intro and store state changes
-    sceneState = scene.introScript(mainGame, mainChar, mainInv);
+    var sceneState = scene.introScript(mainGame, mainChar, mainInv);
     // update main states to scene states
-    mainGame = sceneState.sceneGame;
-    mainChar = sceneState.sceneChar;
-    mainInv = sceneState.sceneInv;
+    for (const property in mainGame) {
+        mainGame[property] = sceneState.sceneGame[property]
+    }
+    for (const property in mainChar) {
+        mainChar[property] = sceneState.sceneChar[property]
+    }
+    for (const property in mainGame) {
+        mainInv[property] = sceneState.sceneInv[property]
+    }
 
     // Activate buttons and await (EventListeners) an option
-}
+// }
 
 // on progress up, let user increment strength, speed, or cunning
 

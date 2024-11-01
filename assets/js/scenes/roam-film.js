@@ -1,3 +1,11 @@
+function addLog(txt) {
+    let entryParent = document.getElementById("consoleLogEl");
+    let newEntry = document.createElement("p");
+    newEntry.className = "log-entry";
+    newEntry.innerHTML = txt;
+    entryParent.appendChild(newEntry);
+}
+
 export const scenes = [
 {title: "Campfire", // purpose: toggles time
     opt1Name: "Move on.",
