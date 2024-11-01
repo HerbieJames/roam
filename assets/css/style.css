@@ -187,5 +187,7 @@ footer {
     .title {margin: 0; height: calc(15% + 10px);}
     .char-img {order: 1; max-width: 100px;}
     .stats-txt {flex-flow: row; direction: rtl; padding: 10px;}
-    .head-stats, .info1stats, .info2-stats {text-align: right; align-content: center;}
+    .head-stats {direction:ltr;  text-align: right; align-content: center; border-left: 1px solid black;}
+    .info1-stats {direction:ltr;  text-align: left; align-content: center; border-left: 1px solid black; padding-left: 10px;}
+    .info2-stats {direction:ltr;  text-align: left; align-content: center;}
 }
