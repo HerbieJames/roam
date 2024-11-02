@@ -86,6 +86,20 @@ console.log("logEl test end")
         mainInv[property] = sceneState.sceneInv[property]
     }
 
+    document.getElementById("enterInputEl").addEventListener("click", () => {
+        addLog(document.getElementById("typeInputEl").value);
+        console.log("Entered: " + document.getElementById("typeInputEl").value);
+        document.getElementById("typeInputEl").value = "";
+    });
+
+    document.getElementById("typeInputEl").addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            addLog(document.getElementById("typeInputEl").value);
+            console.log("Entered: " + document.getElementById("typeInputEl").value);
+            document.getElementById("typeInputEl").value = "";
+        }
+    });
+
     // Activate buttons and await (EventListeners) an option
 // }
 
