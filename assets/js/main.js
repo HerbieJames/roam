@@ -18,6 +18,10 @@ const mainInv = []
 
 let lastInput = ""
 
+let scene = {};
+
+let waiting = false;
+
 /** Writes message to console element
  * 
  * @param {*} string contents of message to console element.
@@ -28,20 +32,19 @@ function addLog(txt) {
     newEntry.className = "log-entry";
     newEntry.innerHTML = txt;
     entryParent.appendChild(newEntry);
+    entryParent.scrollTo(0, entryParent.scrollHeight);
 }
 
-function takeInput() {
-    lastInput = document.getElementById("typeInputEl").value;
-    addLog(lastInput);
-    console.log("Entered: " + lastInput);
-    console.log(typeof(document.getElementById("typeInputEl").value));
-    document.getElementById("typeInputEl").value = "";
-}
-
-function logObj(obj) {
-    for (const property in obj) {
-        addLog(property + ": " + obj[property])
-    }
+/** Changes scene options list
+ * 
+ * @param {*} string contents of message to console element.
+ */
+function showOpts(txt, type) {
+    let entryParent = document.getElementById("optionsEl");
+    let newEntry = document.createElement("i");
+    newEntry.className = type;
+    newEntry.innerHTML = txt;
+    entryParent.appendChild(newEntry);
 }
 
 /**
@@ -61,50 +64,86 @@ function selectScene(film) {
         heldScene = film[Math.floor(Math.random()*(scenes.length))];
         console.log("heldScene pre-validation: " + heldScene.title)
         valid = true;
-        for (const property in heldScene.preReq.preGame) {
-            if (heldScene.preReq.preGame[property] != mainGame[property]) {valid = false};
+        for (const property in heldScene.preReq.reqGame) {
+            if (heldScene.preReq.reqGame[property] != mainGame[property]) {valid = false};
         }
-        for (const property in heldScene.preReq.preChar) {
-            if (heldScene.preReq.preChar[property] != mainChar[property]) {valid = false};
+        for (const property in heldScene.preReq.reqChar) {
+            if (heldScene.preReq.reqChar[property] != mainChar[property]) {valid = false};
         }
-        for (const property in heldScene.preReq.preInv) {
-            if (heldScene.preReq.preInv[property] != mainInv[property]) {valid = false};
+        for (const property in heldScene.preReq.reqInv) {
+            if (heldScene.preReq.reqInv[property] != mainInv[property]) {valid = false};
         } }
 
-        console.log("Selected Scene: " + heldScene.title)
+        console.log("SELECTED: " + heldScene.title)
     return heldScene;
 }
 
-console.log("logEl test start")
-addLog("--- ROAM ---")
-console.log("logEl test end")
-
-// while (mainGame.prog < 10) { game loop
-    // select scene
-    var scene = selectScene(scenes);
-
-    // run scene intro and store state changes
-    var sceneState = scene.introScript(mainGame, mainChar, mainInv);
-    // update main states to scene states
-    for (const property in mainGame) {
-        mainGame[property] = sceneState.sceneGame[property]
-    }
-    for (const property in mainChar) {
-        mainChar[property] = sceneState.sceneChar[property]
-    }
-    for (const property in mainGame) {
-        mainInv[property] = sceneState.sceneInv[property]
-    }
-
-    document.getElementById("enterInputEl").addEventListener("click", takeInput());
-
-    document.getElementById("typeInputEl").addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') { takeInput() }
+function runScene() {
+    //SELECT SCENE
+    scene = selectScene(scenes)
+    //RUN SCENE SCRIPT AND CAPTURE SCENE STATES
+    var sceneState = scene.script(mainGame, mainChar, mainInv);
+    //SET MAIN STATES TO SCENE STATES
+    for (const property in mainGame) {mainGame[property] = sceneState.sceneGame[property]}
+    for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
+    for (const property in mainGame) {mainInv[property] = sceneState.sceneInv[property]}
+    //UPDATE HTMLs
+    scene.options.forEach(function(entry) {
+        console.log("OPTION: " + entry.title);
+        showOpts('"'+entry.title+'"', "scene-option")
     });
 
-    // Activate buttons and await (EventListeners) an option
-// }
+}
 
-// on progress up, let user increment strength, speed, or cunning
+function takeInput() {
+    lastInput = document.getElementById("typeInputEl").value;
+    addLog(lastInput);
+    console.log("Entered: " + lastInput);
+    console.log(typeof(document.getElementById("typeInputEl").value));
+    document.getElementById("typeInputEl").value = "";
+    if ((mainGame.prog == 0) && (lastInput == "Begin")) {
+        console.log("BEGIN AT INPUT VALUE: " + lastInput);
+        mainGame.prog = 1
+        addLog('- - -');
+        addLog('ADVENTURE BEGINS');
+        runScene();
+    } else if (mainGame.prog == 0) {
+        addLog('Type "Begin" to start the game.');
+    } else if ((waiting = true) && (lastInput == "Next")) {
+        console.log("NEXT AT INPUT VALUE: " + lastInput);
+        runScene();
+    } else {
+        scene.options.forEach(function(entry) {
+            if (lastInput == entry.title) {
+                var sceneState = entry.script(mainGame, mainChar, mainInv);
+                var opts = document.getElementById("optionsEl");
+                while (opts.hasChildNodes()) {
+                    opts.removeChild(opts.firstChild);
+                  }
+                addLog('- Type "Next" to continue');
+                for (const property in mainGame) {mainGame[property] = sceneState.sceneGame[property]}
+                for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
+                for (const property in mainGame) {mainInv[property] = sceneState.sceneInv[property]}
+                waiting = true;
+            }
+        });
+    }
+}
 
-// on progress 10, run final scene
+//INITIALISE CONSOLE ELEMENT
+console.log("logEl test start");
+addLog("R  O  A  M");
+addLog('"Begin" your new adventure...');
+console.log("logEl test end");
+
+//EVENT LISTENERS
+document.getElementById("enterInputEl").addEventListener("click", () => {
+    console.log("Enter Registered")
+    takeInput()
+});
+
+document.getElementById("typeInputEl").addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') { 
+        console.log("Enter Registered")
+        takeInput() }
+});
