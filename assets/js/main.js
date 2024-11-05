@@ -16,6 +16,8 @@ const mainChar = {// initialise 0 values in character generation (5pts)
 
 const mainInv = []
 
+let lastInput = ""
+
 /** Writes message to console element
  * 
  * @param {*} string contents of message to console element.
@@ -26,6 +28,14 @@ function addLog(txt) {
     newEntry.className = "log-entry";
     newEntry.innerHTML = txt;
     entryParent.appendChild(newEntry);
+}
+
+function takeInput() {
+    lastInput = document.getElementById("typeInputEl").value;
+    addLog(lastInput);
+    console.log("Entered: " + lastInput);
+    console.log(typeof(document.getElementById("typeInputEl").value));
+    document.getElementById("typeInputEl").value = "";
 }
 
 function logObj(obj) {
@@ -86,18 +96,10 @@ console.log("logEl test end")
         mainInv[property] = sceneState.sceneInv[property]
     }
 
-    document.getElementById("enterInputEl").addEventListener("click", () => {
-        addLog(document.getElementById("typeInputEl").value);
-        console.log("Entered: " + document.getElementById("typeInputEl").value);
-        document.getElementById("typeInputEl").value = "";
-    });
+    document.getElementById("enterInputEl").addEventListener("click", takeInput());
 
     document.getElementById("typeInputEl").addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            addLog(document.getElementById("typeInputEl").value);
-            console.log("Entered: " + document.getElementById("typeInputEl").value);
-            document.getElementById("typeInputEl").value = "";
-        }
+        if (e.key === 'Enter') { takeInput() }
     });
 
     // Activate buttons and await (EventListeners) an option
