@@ -133,6 +133,11 @@ footer {
     bottom: 0;
 }
 
+.img-title {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .title {
     /* Permalink - use to edit and share this gradient:
     https://colorzilla.com/gradient-editor/#1e5799+0,000000+0,7db9e8+100&1+19,0+100 */
@@ -175,8 +180,7 @@ footer {
 .log-view {
     font-family: 'Consolas';
     letter-spacing: 0.05em;
-    flex-flow: column;
-    align-items: flex-start;
+    display: block;
     overflow-y: scroll;
     background-color: var(--bg-colour);
     border-style: none;
@@ -245,8 +249,8 @@ footer {
     .row {flex-flow: column;}
     .item {position: static; justify-content: center; height: auto; flex-grow: 1; margin: 0.375%; padding: 0%;}
     .menu-view {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
-    .scene-view {min-height: 198px; max-height: 300px; order: 1;}
-    .char-view {order:0; min-height: 88px; display: flex; flex-flow: row; font-size: smaller;}
+    .scene-view {min-height: 198px; max-height: 284px; order: 1;}
+    .char-view {order:0; min-height: 44px; display: flex; flex-flow: row; font-size: smaller;}
     .save-btn, .load-btn, .reset-btn, .roam-img {min-width: 80px;}
     .roam-img {justify-content: flex-end;}  
     .title {margin: 0; height: calc(15% + 10px);}
@@ -256,4 +260,6 @@ footer {
     .info1-stats {direction:ltr;  text-align: left; align-content: center; border-left: 1px solid black; padding-left: 10px;}
     .info2-stats {direction:ltr;  text-align: left; align-content: center;}
     .log-input {position: absolute;}
+    .log-view {height: calc(100% - 3em);}
+    .console-view {height:100px}
 }

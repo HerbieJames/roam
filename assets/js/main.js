@@ -25,9 +25,11 @@ let lastInput = ""
 
 let scene = {};
 
+
+
 /** Writes message to console element
  * 
- * @param {*} string contents of message to console element.
+ * @param {String} txt  The Contents of message to console element.
  */
 function addLog(txt) {
     let entryParent = document.getElementById("consoleLogEl");
@@ -38,16 +40,18 @@ function addLog(txt) {
     entryParent.scrollTo(0, entryParent.scrollHeight);
 }
 
-/** Changes scene options list
- * 
- * @param {*} string contents of message to console element.
+/**
+ * Compares to strings without case, space or special character consideration.
+ * @param   {String}  a  A string to compare
+ * @param   {String}  b  A string to compare
+ * @returns {Boolean}    The result of whether their simplified versions are equal
  */
-function showOpts(txt, type) {
-    let entryParent = document.getElementById("optionsEl");
-    let newEntry = document.createElement("i");
-    newEntry.className = type;
-    newEntry.innerHTML = txt;
-    entryParent.appendChild(newEntry);
+function dullEqual(a,b) {
+    var simpleA = a.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+    var simpleB = b.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+    if (simpleA == simpleB) {return true;}
+    else {return false;}
+
 }
 
 /**
@@ -111,7 +115,7 @@ function takeInput() {
     addLog("> "+lastInput);
     console.log('> "'+lastInput+'" ('+typeof(document.getElementById("typeInputEl").value)+")");
     document.getElementById("typeInputEl").value = "";
-    if ((mainGame.prog == 0) && (lastInput == "Begin")) {
+    if ((mainGame.prog == 0) && (dullEqual(lastInput, "begin"))) {
         mainGame.prog = 1
         addLog('- - -');
         runScene();
@@ -122,13 +126,12 @@ function takeInput() {
         runScene();
     } else {
         scene.options.forEach(function(entry) {
-            if (lastInput == entry.title) {
+            if (dullEqual(lastInput, entry.title)) {
                 var sceneState = entry.script(mainGame, mainChar, mainInv);
                 var opts = document.getElementById("optionsEl");
                 while (opts.hasChildNodes()) {
                     opts.removeChild(opts.firstChild);
                   }
-                addLog('- Next?');
                 for (const property in mainGame) {mainGame[property] = sceneState.sceneGame[property]}
                 for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
                 for (const property in mainGame) {mainInv[property] = sceneState.sceneInv[property]}
@@ -141,6 +144,7 @@ function takeInput() {
 //INITIALISE CONSOLE ELEMENT
 addLog("R  O  A  M");
 addLog('"Begin" your new adventure...');
+
 
 //EVENT LISTENERS
 document.getElementById("enterInputEl").addEventListener("click", () => {
