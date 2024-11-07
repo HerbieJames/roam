@@ -2,8 +2,9 @@ function addLog(txt) {
     let entryParent = document.getElementById("consoleLogEl");
     let newEntry = document.createElement("p");
     newEntry.className = "log-entry";
-    newEntry.innerHTML = txt;
+    newEntry.innerHTML = txt.toUpperCase();
     entryParent.appendChild(newEntry);
+    entryParent.scrollTo(0, entryParent.scrollHeight);
 }
 
 export const scenes = [

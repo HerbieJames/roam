@@ -1,0 +1,17 @@
+﻿license: Public Domain
+link: https://www.fontspace.com/kidpixies-font-f26181
+
+license: Freeware, Non-Commercial
+link: https://www.fontspace.com/pixel-or-gtfo-font-f28020
+
+license: Demo
+link: https://www.fontspace.com/pixelmax-font-f119183
+
+license: Creative Commons (by-nd) Attribution No Derivatives
+link: https://www.fontspace.com/pixel-love-font-f9949
+
+license: Creative Commons (by-nd) Attribution No Derivatives
+link: https://www.fontspace.com/pixel-sleigh-font-f10755
+
+license: Freeware, commercial use requires donation
+link: https://www.fontspace.com/pixel-musketeer-font-f18097
