@@ -2,31 +2,19 @@
 ## Overview
 **Live link:** https://herbiejames.github.io/roam/
 
-### Purpose
-
-### Target Audience
-
 ### User Stories
-- **As a, ... I can:** ... **...so that:**
+https://github.com/users/HerbieJames/projects/3
 
 ### Wireframes
 ![wireframe](assets/images/Roam-Wireframe.jpg)
 
-## Considerations
-### Technology
-#### Design:
+## Design Considerations
 - **Balsamiq:** Since Balsamiq has been made available through my placement in the Bootcamp with Code Institute, I considered it for both the Wireframe and State Diagram for this project. Due to it's versitiliy, simplicity to work with, and clean design making for easy to read documents, I chose it for these purposes.
 #### Data storage:
 - **JSON:** Given that the project would need to manage a great deal of static data, between all the possible scenes and threads that could be run, JSON was considered for storing this data. However, it's key drawback is that it is unable to store methods, which are vital to the functionality of both scenes, and threads.
 - **Objects in .js files:** Writing all the scenes into one array, each as their own object, has a great deal of practical disadvantages when it comes to writing a large number of scenes. It also would make the main.js code difficult to navigate. However, at this stage in my experience as a junior developer, javascript's ability to store methods in objects does make it a solution to the issue of how scenes and threads should be stored. To keep the main.js code easier to navigate, seperate files are written in and exported from for the initScenes, subScenes and threadIndex arrays.
 #### Art:
 - **Tiny Glade:** For creating dozens of unique images to display with each scenes, Tiny Glade was considered as a way to accomplish this, chiefly for it's wide host of customization options. However, several drawbacks meant it was impossible to work with. My local environments specifications meant that running the program was extremely slow and unwieldy, and creating scenes with the degree of customization that I would have prefered was not available in the software's demo version.
-
-### Accessibility
-- **...:** ...
-
-### Aesthetics
-- **...:** ...
 
 ## Features
 Features in this project have been prioretized using MoSCoW.
@@ -41,16 +29,5 @@ Features in this project have been prioretized using MoSCoW.
 - **Multiplayer with Room Codes:** Similar to Kahoot!, Django could have been incorperated to facilitae room codes which could be used to create parties of adventurers. Players could have voted on outcomes to scenes, and exchange equiptment as the adventures continued. Incorperation of this feature would have meant a specific attention to how the player characters are interacted with by the rest of the code (i.e. taking damage, recieving items, experiencing stat changes), and would have demanded consideration from the very beginning of the project. At the time as a Junior Developer, this would not have been within the realm of feasibility, as learning the Django to incorperate the technology would not have suited the time frame.
 
 ## Application States
-*Disclaimer:* The word 'state' also describes an object used within the application. For the sake of this explaination, the object 'state' will be refered to in quotations to avoid confusion.
 ![state-diagram](assets/images/Roam-State-Diagram.jpg)
 
-## Deployment
-### Going Live
-
-### Testing Results
-
-### Validation
-
-
----
-***Dependencies:***
