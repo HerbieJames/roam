@@ -17,6 +17,7 @@
 
 html { 
     overflow-y: hidden;
+    overflow-x: hidden;
     height: 100%;
 }
 
@@ -97,6 +98,8 @@ footer {
 .scene-view {
     aspect-ratio: 16/9;
     background-color: var(--primary-color);
+    background-size: 115%;
+    background-repeat: no-repeat;
     min-height: 198px;
     max-height: 450px;
     display: flex;
@@ -135,7 +138,7 @@ footer {
 
 .img-title {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 72px;
 }
 
 .title {
@@ -156,9 +159,8 @@ footer {
 }
 
 .char-img {
-    background-color: var(--txt-color);
+    background-color: var(--secondary-color);
     box-shadow: none;
-    justify-content: center;
     height: 42.5%;
 }
 
@@ -249,11 +251,11 @@ footer {
     .row {flex-flow: column;}
     .item {position: static; justify-content: center; height: auto; flex-grow: 1; margin: 0.375%; padding: 0%;}
     .menu-view {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
-    .scene-view {min-height: 198px; max-height: 284px; order: 1;}
+    .scene-view {min-height: 198px; max-height: 284px; order: 1; justify-content: flex-start;}
     .char-view {order:0; min-height: 44px; display: flex; flex-flow: row; font-size: smaller;}
     .save-btn, .load-btn, .reset-btn, .roam-img {min-width: 80px;}
     .roam-img {justify-content: flex-end;}  
-    .title {margin: 0; height: calc(15% + 10px);}
+    .title {margin: 0; max-height: calc(15% + 10px);}
     .char-img {order: 1; max-width: 100px;}
     .stats-txt {flex-flow: row; direction: rtl; padding: 10px;}
     .head-stats {direction:ltr;  text-align: right; align-content: center; border-left: 1px solid black;}

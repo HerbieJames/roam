@@ -14,10 +14,7 @@ const mainChar = {// initialise 0 values in character generation (5pts)
     health: 5 // 0 -> 5
 }
 
-
 const mainInv = []
-
-const charName = "Adventurer"
 
 let waiting = false;
 
@@ -25,7 +22,16 @@ let lastInput = ""
 
 let scene = {};
 
-
+function generateChar() {
+    mainChar.strength = Math.floor(Math.random()*5);
+    mainChar.speed = Math.floor(Math.random()*5);
+    mainChar.cunning = Math.floor(Math.random()*5);
+    mainChar.health = 5;
+    document.getElementById("charSTR").innerHTML = mainChar.strength;
+    document.getElementById("charSPE").innerHTML = mainChar.strength;
+    document.getElementById("charCUN").innerHTML = mainChar.strength;
+    document.getElementById("charHEA").innerHTML = 5;
+}
 
 /** Writes message to console element
  * 
@@ -104,6 +110,11 @@ function runScene() {
     for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
     for (const property in mainGame) {mainInv[property] = sceneState.sceneInv[property]}
     //UPDATE HTMLs
+    if (mainGame.area == "forest") {
+        document.getElementById("viewportEl").style.backgroundImage = "url(/assets/images/forest.png)";
+    } else if (mainGame.area == "city") {
+        document.getElementById("viewportEl").style.backgroundImage = "url(/assets/images/city.jpeg)";
+    }
     scene.options.forEach(function(entry) {
         addLog(" - "+entry.title+"?");
     });
@@ -117,6 +128,7 @@ function takeInput() {
     document.getElementById("typeInputEl").value = "";
     if ((mainGame.prog == 0) && (dullEqual(lastInput, "begin"))) {
         mainGame.prog = 1
+        generateChar()
         addLog('- - -');
         runScene();
     } else if (mainGame.prog == 0) {
