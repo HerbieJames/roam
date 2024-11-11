@@ -1,15 +1,16 @@
 :root {
-    --bg-colour: #0C1019;
-    --txt-color: #E8E4E1;
-    --accent-color: #54565e;
-    --secondary-color: #3D4F75;
-    --primary-color: #476891;
+    --black-colour: #0C1019;
+    --white-color: #E8E4E1;
+    --bg-color: #54565e;
+    --primary-color: hsl(0 46% 34.9%);
+    --secondary-color: hsl(0 41% 16%);
+
 }
 
 * {
     margin: 0;
     padding: 0;
-    color: var(--txt-color);
+    color: var(--white-color);
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -24,7 +25,7 @@ html {
 body {
     margin: 0 calc((100% - 1027px)/3);
     min-height: 100%;
-    background-color: var(--accent-color);
+    background-color: var(--bg-color);
     display: flex;
     flex-flow: column;
 }
@@ -58,8 +59,7 @@ footer {
 .sect {
     position: relative;
     flex-grow: 1;
-    background-color: var(--secondary-color);
-    border-bottom: 2px solid var(--bg-colour);
+    background-color: var(--bg-color);
     min-width: 198px;
     min-height: 33px;
 }
@@ -72,8 +72,8 @@ footer {
     border-style: solid;
     border-width: 2px;
     border-color: var(--secondary-color);
-    border-radius: 2px;
-    box-shadow: 0px 0px 3px var(--bg-colour);
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px var(--black-colour);
     height: 15%;
     width: 95%;
     margin: 5px;
@@ -82,7 +82,7 @@ footer {
 
 .row-page {
     flex-flow: column;
-    background-color: var(--bg-colour);
+    background-color: var(--black-colour);
 }
 
 .row-b {
@@ -97,14 +97,23 @@ footer {
 
 .scene-view {
     aspect-ratio: 16/9;
-    background-color: var(--primary-color);
-    background-size: 115%;
-    background-repeat: no-repeat;
     min-height: 198px;
     max-height: 450px;
     display: flex;
     flex-flow: column;
-    justify-content: end;
+    justify-content: center;
+    align-items: center;
+}
+
+.scene-item {
+    background-image: url(../images/forest.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    flex-grow: 1;
+    padding: 0;
+    height: calc(100% - 10px);
+    width: calc(100% - 10px);
 }
 
 .char-view {
@@ -113,7 +122,8 @@ footer {
 }
 
 .console-view {
-    background-color: var(--bg-colour);
+    background-color: var(--black-colour);
+    margin: 5px;
 }
 
 .save-btn {
@@ -141,6 +151,12 @@ footer {
     max-height: 72px;
 }
 
+.img-char {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
 .title {
     /* Permalink - use to edit and share this gradient:
     https://colorzilla.com/gradient-editor/#1e5799+0,000000+0,7db9e8+100&1+19,0+100 */
@@ -159,13 +175,15 @@ footer {
 }
 
 .char-img {
-    background-color: var(--secondary-color);
+    background-color: var(--bg-color);
     box-shadow: none;
     height: 42.5%;
+    display: flex;
+    justify-content: center;
 }
 
 .stats-txt {
-    background-color: var(--secondary-color);
+    background-color: var(--bg-color);
     box-shadow: none;
     height: calc(57.5% - 15px);
     bottom: 0;
@@ -173,8 +191,12 @@ footer {
 }
 
 .head-stats, .info1-stats, .info2-stats {
+    border-top: 1px solid black;
     text-align: center;
     font-size: smaller;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
     height: 100%;
     flex-grow: 1;
 }
@@ -184,10 +206,10 @@ footer {
     letter-spacing: 0.05em;
     display: block;
     overflow-y: scroll;
-    background-color: var(--bg-colour);
+    background-color: var(--black-colour);
     border-style: none;
     box-shadow: none;
-    padding: 0.1em 0;
+    padding: 0.1em 0 1em 0;
     margin: 0;
     width: 100%;
     height: calc(100% - 3em);
@@ -208,9 +230,9 @@ footer {
 }
 
 .log-input {
-    background-color: var(--bg-colour);
+    background-color: var(--black-colour);
     border-style: none;
-    border-top: 0.1em solid var(--txt-color);
+    border-top: 0.1em solid var(--white-color);
     box-shadow: none;
     padding: 0;
     margin: 0;
@@ -221,21 +243,27 @@ footer {
 
 
 #typeInputEl {
+    font-family: 'Courier New', Courier, monospace;
     padding: 0.3em;
-    background-color: var(--bg-colour);
+    background-color: var(--black-colour);
     border-style: none;
-    color: var(--txt-color);
+    color: var(--white-color);
     width: 100%;
     height: 3em;
 }
 
+#typeInputEl:focus {
+    outline-width: 0;
+}
+
 #enterInputEl {
+    font-family: 'Courier New', Courier, monospace;
     height: auto;
     padding: 1em;
     border-style: none;
-    border-left: 0.1em solid var(--txt-color);
-    background-color: var(--bg-colour);
-    color: var(--txt-color);
+    border-left: 0.1em solid var(--white-color);
+    background-color: var(--black-colour);
+    color: var(--white-color);
 }
 
 @media screen and (max-width: 1027px) {
@@ -249,19 +277,20 @@ footer {
     .vpad, footer {display: none;}
     .hpad {display: block;}
     .row {flex-flow: column;}
-    .item {position: static; justify-content: center; height: auto; flex-grow: 1; margin: 0.375%; padding: 0%;}
+    .item {position: static; justify-content: center; height: auto; flex-grow: 1; padding: 0%;}
     .menu-view {order:0; min-height: 44px; display: flex; flex-flow: row; overflow: hidden;}
     .scene-view {min-height: 198px; max-height: 284px; order: 1; justify-content: flex-start;}
+    .scene-item {align-items: flex-start;}
     .char-view {order:0; min-height: 44px; display: flex; flex-flow: row; font-size: smaller;}
     .save-btn, .load-btn, .reset-btn, .roam-img {min-width: 80px;}
     .roam-img {justify-content: flex-end;}  
     .title {margin: 0; max-height: calc(15% + 10px);}
     .char-img {order: 1; max-width: 100px;}
     .stats-txt {flex-flow: row; direction: rtl; padding: 10px;}
-    .head-stats {direction:ltr;  text-align: right; align-content: center; border-left: 1px solid black;}
-    .info1-stats {direction:ltr;  text-align: left; align-content: center; border-left: 1px solid black; padding-left: 10px;}
-    .info2-stats {direction:ltr;  text-align: left; align-content: center;}
+    .head-stats {direction:ltr;  text-align: right; align-content: center; border-left: 1px solid black; border-top: none;}
+    .info1-stats {direction:ltr;  text-align: left; align-content: center; border-left: 1px solid black; padding-left: 10px; border-top: none;}
+    .info2-stats {direction:ltr;  text-align: left; align-content: center; border-top: none;}
     .log-input {position: absolute;}
-    .log-view {height: calc(100% - 3em);}
+    .log-view {height: calc(100% - 3em); padding: 0.1em 0 1em 0;}
     .console-view {height:100px}
 }
