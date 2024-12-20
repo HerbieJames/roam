@@ -1,9 +1,9 @@
 :root {
-    --bg-colour: #0C1019;
+    --bg-colour: white;
     --txt-color: #E8E4E1;
-    --accent-color: #54565e;
-    --secondary-color: #3D4F75;
-    --primary-color: #476891;
+    --accent-color: #40bfbf;
+    --secondary-color: #366363;
+    --primary-color: #478566;
 }
 
 * {
@@ -24,7 +24,7 @@ html {
 body {
     margin: 0 calc((100% - 1027px)/3);
     min-height: 100%;
-    background-color: var(--accent-color);
+    background-color: var(--bg-colour);
     display: flex;
     flex-flow: column;
 }
@@ -35,6 +35,8 @@ footer {
     justify-content: center;
     width: 100%;
 }
+
+footer > span, footer > span > a  { color: black;}
 
 .vpad {
     height: 33px;
@@ -97,8 +99,9 @@ footer {
 
 .scene-view {
     aspect-ratio: 16/9;
-    background-color: var(--primary-color);
-    background-size: 115%;
+    background-color: black;
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
     min-height: 198px;
     max-height: 450px;
@@ -113,7 +116,7 @@ footer {
 }
 
 .console-view {
-    background-color: var(--bg-colour);
+    background-color: black;
 }
 
 .save-btn {
@@ -132,7 +135,8 @@ footer {
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none;
     justify-content: center;
-    height: calc(40% - 40px);
+    height: auto;
+    max-height: calc(40% - 40px);
     bottom: 0;
 }
 
@@ -184,7 +188,7 @@ footer {
     letter-spacing: 0.05em;
     display: block;
     overflow-y: scroll;
-    background-color: var(--bg-colour);
+    background-color: black;
     border-style: none;
     box-shadow: none;
     padding: 0.1em 0;
@@ -197,18 +201,8 @@ footer {
     padding: 0 0.3em;
 }
 
-.scene-option {
-    background: linear-gradient(to right, rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.75) 7%,rgba(0,0,0,0.05) 86%,rgba(0,0,0,0) 100%);
-    display: block;
-    white-space: nowrap;
-    top:100px;
-    height: 2em;
-    width: 8em;
-    padding: 0.3em;
-}
-
 .log-input {
-    background-color: var(--bg-colour);
+    background-color: black;
     border-style: none;
     border-top: 0.1em solid var(--txt-color);
     box-shadow: none;
@@ -222,7 +216,7 @@ footer {
 
 #typeInputEl {
     padding: 0.3em;
-    background-color: var(--bg-colour);
+    background-color: black;
     border-style: none;
     color: var(--txt-color);
     width: 100%;
@@ -234,7 +228,7 @@ footer {
     padding: 1em;
     border-style: none;
     border-left: 0.1em solid var(--txt-color);
-    background-color: var(--bg-colour);
+    background-color: black;
     color: var(--txt-color);
 }
 
