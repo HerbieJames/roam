@@ -23,9 +23,9 @@ let lastInput = ""
 let scene = {};
 
 function generateChar() {
-    mainChar.strength = Math.floor(Math.random()*5);
-    mainChar.speed = Math.floor(Math.random()*5);
-    mainChar.cunning = Math.floor(Math.random()*5);
+    mainChar.strength = Math.ceil(Math.random()*5);
+    mainChar.speed = Math.ceil(Math.random()*5);
+    mainChar.cunning = Math.ceil(Math.random()*5);
     mainChar.health = 5;
     document.getElementById("charSTR").innerHTML = mainChar.strength;
     document.getElementById("charSPE").innerHTML = mainChar.strength;
@@ -66,11 +66,6 @@ function dullEqual(a,b) {
  * @returns {Object}       A random, valid scene fromt he array
  */
 function selectScene(film) {
-    // selects scene from scenes
-    //      holds randomly from scenes
-    //      attempt to validate preReq
-    //      if fails, repeats attempt for new hold
-    //      if passes, release 
     var heldScene = {};
     var valid = false;
     while (valid === false) {
@@ -110,14 +105,14 @@ function runScene() {
     for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
     for (const property in mainGame) {mainInv[property] = sceneState.sceneInv[property]}
     //UPDATE HTMLs
+    document.getElementById("titleEl").innerHTML = scene.title;
     if (mainGame.area == "forest") {
         document.getElementById("viewportEl").style.backgroundImage = "url(./assets/images/forest.png)";
     } else if (mainGame.area == "city") {
         document.getElementById("viewportEl").style.backgroundImage = "url(./assets/images/city.jpeg)";
     }
-    document.getElementById("sceneTitleEl").innerHTML = scene.title;
-    scene.options.forEach(function(entry) {
-        addLog(" - "+entry.title+"?");
+    scene.options.forEach(function(entry, index) {
+        addLog(index+1+": "+entry.title+"?");
     });
 
 }
@@ -138,8 +133,8 @@ function takeInput() {
         console.log("WAITING = " + waiting);
         runScene();
     } else {
-        scene.options.forEach(function(entry) {
-            if (dullEqual(lastInput, entry.title)) {
+        scene.options.forEach(function(entry, index) {
+            if (dullEqual(lastInput, entry.title) || dullEqual(lastInput, String(index+1))) {
                 var sceneState = entry.script(mainGame, mainChar, mainInv);
                 for (const property in mainGame) {mainGame[property] = sceneState.sceneGame[property]}
                 for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
