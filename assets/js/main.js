@@ -107,9 +107,9 @@ function runScene() {
     //UPDATE HTMLs
     document.getElementById("titleEl").innerHTML = scene.title;
     if (mainGame.area == "forest") {
-        document.getElementById("viewportEl").style.backgroundImage = "url(/assets/images/forest.png)";
+        document.getElementById("viewportEl").style.backgroundImage = "url(./assets/images/forest.png)";
     } else if (mainGame.area == "city") {
-        document.getElementById("viewportEl").style.backgroundImage = "url(/assets/images/city.jpeg)";
+        document.getElementById("viewportEl").style.backgroundImage = "url(./assets/images/city.jpeg)";
     }
     scene.options.forEach(function(entry, index) {
         addLog(index+1+": "+entry.title+"?");
@@ -136,10 +136,6 @@ function takeInput() {
         scene.options.forEach(function(entry, index) {
             if (dullEqual(lastInput, entry.title) || dullEqual(lastInput, String(index+1))) {
                 var sceneState = entry.script(mainGame, mainChar, mainInv);
-                var opts = document.getElementById("optionsEl");
-                while (opts.hasChildNodes()) {
-                    opts.removeChild(opts.firstChild);
-                  }
                 for (const property in mainGame) {mainGame[property] = sceneState.sceneGame[property]}
                 for (const property in mainChar) {mainChar[property] = sceneState.sceneChar[property]}
                 for (const property in mainGame) {mainInv[property] = sceneState.sceneInv[property]}
